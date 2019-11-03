@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -18,11 +19,6 @@ MatSortModule, MatPaginatorIntl } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
-
-
-
-
-
 
 
 @NgModule({
