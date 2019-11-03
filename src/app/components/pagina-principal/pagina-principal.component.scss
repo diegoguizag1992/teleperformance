@@ -2,7 +2,7 @@
 .contenedor {
   background: url('/assets/images/imagenProyecto.jpg') no-repeat center;
       width: 100%;
-      height: 100px;
+      height: 100%;
       background-size:     cover;                      /* <------ */
       background-repeat:   no-repeat;
       background-position: center center;
@@ -87,13 +87,22 @@
 
 .plan{
   position: absolute;
+  display: inline;
   color: aliceblue;
-  top: 300px;
-  font-family: 'Arial Narrow', arial;
-  font-size: 30px;
 }
 
 .parrafoPlan{
+  position: absolute;
+  display: inline;
   font-family: 'Arial Narrow', arial;
   font-size: 18px;
+  top: 300px;
+}
+
+.parrafo{
+  position: absolute;
+  display: inline;
+  top: 250px;
+  font-family: 'Arial Narrow', arial;
+  font-size: 30px;
 }
