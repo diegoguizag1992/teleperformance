@@ -19,12 +19,15 @@ MatSortModule, MatPaginatorIntl } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaginaPrincipalComponent
+    PaginaPrincipalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

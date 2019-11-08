@@ -1,94 +1,70 @@
- <div class="contenedor d-flex justify-content-end">
+ <div class="contenedor d-flex justify-content-center">
    <div class="container mt-5">
       <div class="row">
-       <div class="col-lg-12 d-flex justify-content-end align-items-center">
+       <div class="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <div class="containerLogin">
+            <div class="containerLogin" style="width: 100%; height: 400%;">
               <div class="loginTitulo">
-                  <p class="titulo"> <i> ¿QUÉ ESPERAS PARA CUMPLIR TU SUEÑO? </i> </p>
-                  <p class="subtitulo"> Deja tus datos y nos comunicaremos con tigo </p>
+                  <p class="titulo"> <i> Teleperformance </i> </p>
               </div>
               <div class="loginSubTitulo">
               </div>
-              <div class="container">
+              <form novalidate (ngSubmit)="crearRequerimiento()" [formGroup]="datos">
+                  <div class="container">
                   <mat-form-field class="container nombre">
-                      <input [formControl]="nombreCompleto" class="" type="text" matInput #input  placeholder="Nombre completo" required>
+                      <input [formControl]="nombreCompleto" class="" type="text" matInput #input  placeholder="Nombre" required>
                       <mat-error *ngIf="nombreCompleto.invalid">{{getNombreMessage()}}</mat-error>
-                </mat-form-field>
-              </div>
+                  </mat-form-field>
+                </div>
+                <br>
+                <div class="container">
+                 <mat-form-field class="container nombre">
+                    <input [formControl]="apellido" class="" type="text" matInput #input  placeholder="Apellido" required>
+                    <mat-error *ngIf="apellido.invalid">{{getApellidoMessage()}}</mat-error>
+               </mat-form-field>
+            </div>
               <br>
               <div class="container">
                 <div class="row">
                   <div class="col-xs-12 col-sm-6">
-                    <mat-form-field class="container documento">
-                      <mat-select [formControl]="tipoDocumento" placeholder="Tipo de documento">
-                      <mat-option value="Cedula">Cedula</mat-option>
-                      <mat-option value="Nit">Nit</mat-option>
-                     </mat-select>
-                    <mat-error *ngIf="tipoDocumento.invalid">{{getTipoDocumentorMessage()}}</mat-error>
-                    </mat-form-field>
+                      <mat-form-field  class="container documento">
+                          <input [formControl]="numeroCedula" type="text" matInput #input maxlength="10" placeholder="Nick" required>
+                          <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                          <mat-error *ngIf="numeroCedula.invalid">{{getNumeroCedulaMessage()}}</mat-error>
+                        </mat-form-field>
                   </div>
                   <div class="col-xs-12 col-sm-6">
-                    <mat-form-field  class="container documento">
-                      <input [formControl]="numeroCedula" type="text" matInput #input maxlength="10" placeholder="Número documento">
-                      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                      <mat-error *ngIf="numeroCedula.invalid">{{getNumeroCedulaMessage()}}</mat-error>
-                    </mat-form-field>
+                      <mat-form-field class="container pais">
+                          <input [formControl]="celular" type="text" matInput #input maxlength="10" placeholder="Telefono" required>
+                          <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                          <mat-error *ngIf="celular.invalid">{{getCelularMessage()}}</mat-error>
+                        </mat-form-field>
                   </div>
                 </div>
               </div>
               <br>
-              <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <mat-form-field class="container pais">
-                            <mat-select [formControl]="pais" placeholder="Pais">
-                            <mat-option value="pais" *ngFor="let pais of listaPaises" >{{pais.name}}</mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="pais.invalid">{{getPaisMessage()}}</mat-error>
-                          </mat-form-field>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <mat-form-field hintLabel="" class="container pais">
-                            <input [formControl]="celular" type="text" matInput #input maxlength="10" placeholder="Celular">
-                            <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                            <mat-error *ngIf="celular.invalid">{{getCelularMessage()}}</mat-error>
-                          </mat-form-field>
-                    </div>
+
+                    <div class="container">
+                        <mat-form-field class="container nombre">
+                          <input matInput placeholder="Direccion" [formControl]="direccion" required>
+                          <mat-error *ngIf="direccion.invalid">{{getDireccionMessage()}}</mat-error>
+                        </mat-form-field>
                   </div>
-                </div>
-                    <br>
+                  <br>
                     <div class="container">
                           <mat-form-field class="container nombre">
                             <input matInput placeholder="Correo Electronico" [formControl]="email" required>
                             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                           </mat-form-field>
                     </div>
-                    <br>
-                  <div class="container">
-                      <section class="example-section terminos">
-                      <mat-checkbox class="example-margin" [(ngModel)]="checked">Leí y acepto condiciones de la <a href=""> politica de provacidad</a></mat-checkbox>
-                      <!-- <mat-error *ngIf="celular.invalid">{{getCelularMessage()}}</mat-error> -->
-                     </section>
-                  </div>
 
-                  <button mat-raised-button class="boton" (click)="enviar()" >Enviar</button>
-                  <br> <br>  <br> <br>
+                    <button class="btn btn-info" type="submit">crear</button>
+                  </form>
+                    <br>
                </div>
             </div>
 
 </div>
-<div class="container plan" style="display: inline;">
-    <p class="parrafo" style="display: inline;" >Plan Prográmate</p>
-    <p class="parrafoPlan" style="display: inline;">Ahora tú plannes cuándo serás adjudicado para tu nuevo<br> vehículo Chevrolet</p>
-  </div>
-
-
-
-
-
-
-
 
 
 

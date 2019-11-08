@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { PaisService } from 'src/app/services/pais.service';
 import Swal from 'sweetalert2';
+import { Empleados } from 'src/app/models/empleados';
 
 
 
@@ -12,24 +12,24 @@ import Swal from 'sweetalert2';
 })
 export class PaginaPrincipalComponent implements OnInit {
 
-   listaPaises: any = {};
+   datos: Empleados = {};
    email = new FormControl('', [Validators.required, Validators.email]);
    tipoDocumento = new FormControl('', [Validators.required]);
    pais = new FormControl('', [Validators.required]);
    nombreCompleto = new FormControl('', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*')]);
    numeroCedula  = new FormControl('', [Validators.required, Validators.pattern('[1-9 ]*')]);
    celular = new FormControl('', [Validators.required, Validators.pattern('[1-9 ]*')]);
+   apellido = new FormControl('', [Validators.required, Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*')]);
+   direccion  = new FormControl('', [Validators.required]);
 
-   checked = false;
 
-  constructor(private servicePais: PaisService) { }
+
+
+
+  constructor() { }
 
   ngOnInit() {
-    this.servicePais.datosPais().subscribe(data => {
-      this.listaPaises = data;
-      console.log(this.listaPaises);
 
-    })
   }
 
   getErrorMessage() {
@@ -44,13 +44,19 @@ export class PaginaPrincipalComponent implements OnInit {
   }
 
   getNombreMessage() {
-    return this.nombreCompleto.hasError('required') ? 'Debe ingresar nombre completo' :
+    return this.nombreCompleto.hasError('required') ? 'Debe ingresar Nombre' :
+           this.nombreCompleto.hasError('pattern') ? 'No puede llevar números' :
+            '';
+  }
+
+  getApellidoMessage() {
+    return this.nombreCompleto.hasError('required') ? 'Debe ingresar Apellido' :
            this.nombreCompleto.hasError('pattern') ? 'No puede llevar números' :
             '';
   }
 
   getNumeroCedulaMessage(){
-    return this.numeroCedula.hasError('required') ? 'Ingrese número documento' :
+    return this.numeroCedula.hasError('required') ? 'Ingrese nick' :
            this.numeroCedula.hasError('pattern') ? 'No puede llevar letras' :
           //  this.numeroCedula.hasError('min') ? 'Debe ser mayor a 6 digitos' :
             '';
@@ -62,32 +68,22 @@ export class PaginaPrincipalComponent implements OnInit {
   }
 
   getCelularMessage(){
-    return this.celular.hasError('required') ? 'Debe ingresar numero celular' :
+    return this.celular.hasError('required') ? 'Debe ingresar numero telefono' :
            this.celular.hasError('pattern') ? 'No puede llevar letras' :
             '';
   }
 
-  enviar(){
-    console.log(this.checked);
-
-    if (this.checked === false) {
-      Swal.fire(
-        '',
-        'Debe leer y aceptar las condiciones de las politicas de privacidad',
-        'info'
-      );
-      return;
-    }
-
-    if (this.checked) {
-      Swal.fire(
-        '',
-        'Datos almacenados con exito',
-        'success'
-      );
-      return;
-    }
+  getDireccionMessage(){
+    return this.direccion.hasError('required') ? 'Debe ingresar direccion' :
+            '';
   }
+
+  crearRequerimiento(){
+
+      console.log(this.datos);
+
+  }
+
 }
 
 
